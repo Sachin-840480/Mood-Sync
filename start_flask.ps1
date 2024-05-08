@@ -2,5 +2,5 @@
 cd "Your Directory, Where the /backend exist"
 
 # Start the Flask server.
-flask --app "server" run --debug
+flask --app "server" run
 
