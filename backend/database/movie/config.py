@@ -4,16 +4,14 @@
 
 if __name__ == 'config':    #to make sure it donot run 'directly' and 'only run' when it is being 'called'.
 
-    mysql_host = "localhost"
+    mysql_host = "Your MySQL Host Name"
 
-    mysql_user = "root"
+    mysql_user = "Your MySQL User Name"
 
-    mysql_password = "facerecdec4"
+    mysql_password = "Your MySQL Password"
 
-    database_name = "moodsync"
+    database_name = "YOur Name of the Database"
 
-    my_email = 'facerecdec@gmail.com'
+    my_email = 'Your Email/Gmail ID'
 
-    email_app_password = 'kycbmvadrbnslydk'
-
-    upload_folder = './match_face/'
+    email_app_password = 'Your Email/Gmail App Password'

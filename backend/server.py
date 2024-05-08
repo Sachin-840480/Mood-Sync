@@ -473,13 +473,11 @@ def detect_and_select_media():
 '''-----------------------------------------------------------------------------------------------------'''
 
 @app.route('/media_history')
-# @jwt_required()  # Require a valid JWT token to access media history
+@jwt_required()  # Require a valid JWT token to access media history
 def media_history():
     try:
         # Get the user's identity from the JWT token
-        # current_login_id = get_jwt_identity()
-
-        current_login_id = 'sachin1712003@gmail.com'
+        current_login_id = get_jwt_identity()
         
         # Fetch recent media history for the user from the database
         query = "SELECT * FROM media_history WHERE login_id = %s ORDER BY timestamp DESC LIMIT 10;"

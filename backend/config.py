@@ -5,22 +5,17 @@
 if __name__ == 'config':    #to make sure it donot run 'directly' and 'only run' when it is being 'called'.
 
     from secrets import token_hex
+    
+    mysql_host = "Your MySQL Host Name"
 
-    mysql_host = "localhost"
+    mysql_user = "Your MySQL User Name"
 
-    mysql_user = "root"
+    mysql_password = "Your MySQL Password"
 
-    mysql_password = "9113160110"
+    database_name = "YOur Name of the Database"
 
-    database_name = "moodsync"
+    my_email = 'Your Email/Gmail ID'
 
-    my_email = 'facerecdec@gmail.com'
+    email_app_password = 'Your Email/Gmail App Password'
 
-    email_app_password = 'kycbmvadrbnslydk'
-
-    upload_folder = './match_face/'
-
-    secret_key = '12345678910111213141516'
-
-    # Youtube Api Key for FaceRecDec
-    # AIzaSyD2Fi4FYjvdcGD9fwHhA432WUe1wCOoqHU
+    secret_key = token_hex(16)
