@@ -10,6 +10,7 @@ from string import Template
 from pathlib import Path  # like os.path
 from config import *
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from datetime import timedelta
 from subprocess import run, PIPE
 from threading import Thread
 
@@ -37,6 +38,9 @@ print()
 app.secret_key = secret_key
 app.config['SECRET_KEY'] = secret_key
 app.config['JWT_SECRET_KEY'] = secret_key
+
+# Set JWT expiration time to 5 minutes
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(minutes=30)
 
 jwt = JWTManager(app)
 

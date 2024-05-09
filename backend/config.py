@@ -12,7 +12,7 @@ if __name__ == 'config':    #to make sure it donot run 'directly' and 'only run'
 
     mysql_password = "Your MySQL Password"
 
-    database_name = "YOur Name of the Database"
+    database_name = "Name of Your Database"
 
     my_email = 'Your Email/Gmail ID'
 
