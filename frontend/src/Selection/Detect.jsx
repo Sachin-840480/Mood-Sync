@@ -1,4 +1,3 @@
-// Detect.js
 import React, { useState } from 'react';
 import './Detect.css';
 

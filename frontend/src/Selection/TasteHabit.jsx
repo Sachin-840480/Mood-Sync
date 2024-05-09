@@ -1,7 +1,6 @@
 import React from 'react'
 
 const TasteHabit = ({ onSelect }) => {
-
     const handleChange = (event) => {
         onSelect(event.target.value);
     };

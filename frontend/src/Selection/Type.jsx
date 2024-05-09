@@ -1,4 +1,3 @@
-// Type.js
 import React, { useState } from 'react';
 import './Type.css';
 import EventDrop from './EventDrop';

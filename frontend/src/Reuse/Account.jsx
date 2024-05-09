@@ -3,7 +3,6 @@ import MessageModal from './MessageModal';
 import "./Account.css";
 import "./ModalPopup.css";
 
-
 const Account = ({}) => {
     const [modalMessage, setModalMessage] = useState(''); // Modal Popup Messages.
     const [showMessageModal, setShowMessageModal] = useState(false); // State to control Message modal visibility

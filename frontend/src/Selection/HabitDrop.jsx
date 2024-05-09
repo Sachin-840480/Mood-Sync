@@ -4,6 +4,7 @@ const HabitDrop = ({ onSelect }) => {
     const handleChange = (event) => {
         onSelect(event.target.value);
     };
+    
     return (
         <div>
             < form className="max-w-sm mx-auto">
