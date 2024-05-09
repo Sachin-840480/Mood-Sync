@@ -7,10 +7,7 @@ function YouTubeRadio() {
   // Function to open a new tab with a random YouTube video of the selected music type
   function openRandomVideo(musicType) {
     // Define your YouTube Data API key
-    const apiKey = 'AIzaSyB3m4yAb3k1fw6LhsyP2yr-Qi_ffybjJJ4'; //1
-    // const apiKey = 'AIzaSyBE9SRx7rR0pA53SOh3uPGpQHqRydpZDnQ'; //2
-    // const apiKey = 'AIzaSyAcRYxoyTXcqdnLkN1AbrHc9BOuPrrZmx8'; //3
-    // const apiKey = 'AIzaSyD7yJMFwmhp5IRbOGLGlvwhAbRCTtAkuK0'; //4
+    const apiKey = 'Your YouTube API key';
 
     // Make an API request to search for videos
     fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${musicType} music&type=video&videoEmbeddable=true&part=snippet&maxResults=50&safeSearch=strict&videoDuration=medium`)

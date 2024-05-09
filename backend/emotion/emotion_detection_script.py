@@ -33,7 +33,7 @@ while True:
 
     try:
         # Detect faces in the frame
-        faces = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml').detectMultiScale(
+        faces = cv2.CascadeClassifier('./emotion/models/haarcascade_frontalface_default.xml').detectMultiScale(
             frame, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
         if len(faces) > 0:

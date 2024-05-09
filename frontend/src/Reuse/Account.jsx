@@ -8,9 +8,6 @@ const Account = ({}) => {
     const [modalMessage, setModalMessage] = useState(''); // Modal Popup Messages.
     const [showMessageModal, setShowMessageModal] = useState(false); // State to control Message modal visibility
 
-    
-
-
     const handleRegistration = async (e) => {
         e.preventDefault();
         try {

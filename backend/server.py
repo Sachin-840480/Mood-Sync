@@ -40,7 +40,6 @@ app.config['JWT_SECRET_KEY'] = secret_key
 
 jwt = JWTManager(app)
 
-
 # app.run(host='192.168.29.179', port=5000, debug=True)
 
 # Home Page
@@ -126,9 +125,9 @@ def gen_otp():
 
 # Sending the OTP for 1st time or for resend.
 def send_otp():
-    session['user_otp_num'] = gen_otp()
-    print(session.get('user_otp_num'), '\n')
-    send_email('Face_Rec_Dec Team', 'Your Email Verification OTP (One-Time-Password).', session.get('user_login_id'), './emails/email_otp', {'name': session.get('user_name'), 'otp': session.get('user_otp_num')})
+    session['otp_num'] = gen_otp()
+    print(session.get('otp_num'), '\n')
+    send_email('Face_Rec_Dec Team', 'Your Email Verification OTP (One-Time-Password).', session.get('login_id'), './emails/email_otp', {'name': session.get('name'), 'otp': session.get('otp_num')})
 
 
 # Route for resending OTP.
@@ -149,17 +148,17 @@ def verify_otp():
     if request.method == 'POST':
         try:
             print(session)
-            print(type(session.get('user_otp_num')))  # We get the Values in str and not in Int, thats why it was malfunctioning.
+            print(type(session.get('otp_num')))  # We get the Values in str and not in Int, thats why it was malfunctioning.
             OTP = int(request.form.get('otp'))
             print(type(OTP))
-            if OTP == session.get('user_otp_num'):
+            if OTP == session.get('otp_num'):
 
                 # Insert the new user into the database
                 insert_query = "INSERT INTO login (login_id, name, password) VALUES (%s, %s, %s)"
                 cursor.execute(insert_query, (session.get('login_id'), session.get('name'), session.get('password')))
                 mydb.commit()
 
-                return jsonify({'access': 'Granted', 'name': session.get('user_name'), 'message': f"{session.get('user_name')} OTP verification successful."})
+                return jsonify({'access': 'Granted', 'name': session.get('name'), 'message': f"{session.get('name')} OTP verification successful."})
 
             return jsonify({'access': 'Denied', 'message': 'The Entered OTP is Wrong, Please try again.'})
 
@@ -178,9 +177,9 @@ def verify_otp():
 def register():
     if request.method == 'POST':
         try:
-            user_name = request.form.get('name')
-            user_login_id = request.form.get('login_id')
-            user_password = request.form.get('password')
+            name = request.form.get('name')
+            login_id = request.form.get('login_id')
+            password = request.form.get('password')
 
             # session.clear() #To clear all values from the Session. {Here Manually}
             session.pop('name', None)
@@ -191,21 +190,21 @@ def register():
 
             # Check if the user already exists.
             query = "SELECT * FROM login WHERE login_id = %s"
-            cursor.execute(query, (user_login_id,))
+            cursor.execute(query, (login_id,))
 
             data = cursor.fetchone()
 
             if data:    # User already exists
                 return jsonify({'access': 'Denied', 'message': 'User already exists. Please Use a different Email.'}), 200
 
-            session['name'] = user_name
-            session['login_id'] = user_login_id
-            session['password'] = user_password
+            session['name'] = name
+            session['login_id'] = login_id
+            session['password'] = password
             print(session)
 
             send_otp()  #Generate, Send the Otp to Email.
 
-            return jsonify({'access': 'Granted', 'email': session.get('user_login_id')}), 200
+            return jsonify({'access': 'Granted', 'email': session.get('login_id')}), 200
 
         except Exception as e:
             print(str(e))
@@ -267,7 +266,7 @@ def logout():
 
 # writing into the information of the "contact page" into 'database.csv' file.
 def contact_csv(data):
-    file_path = './csv/contact.csv'
+    file_path = './database/csv/contact.csv'
     write_to_csv(file_path, [data['fname'], data['lname'], data['email'], data['message']])
 
 
@@ -423,7 +422,7 @@ def select_media(current_login_id, media_type, emotion):
 
             # Call the function to play the media voice in a Thread
             try:
-                Thread(target=run_voice, args=(media_type, media_data[1])).start()
+                Thread(target=run_voice, args=(media_type, media_data[1],)).start()
             except ValueError:
                 pass
 
